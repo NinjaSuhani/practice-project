@@ -2,13 +2,8 @@
 
 A responsive task management application built using HTML, CSS and JavaScript.
 
-## Screenshots
+## Screenshot
 
-### Dashboard
-![TaskFlow Dashboard](screenshots/dashboard.png)
+<img width="1865" height="892" alt="image" src="https://github.com/user-attachments/assets/4d4b063b-ad6b-44c8-a05c-e8328bd60eca" />
 
-### Add Task
-![Add Task](screenshots/add-task.png)
 
-### Dark Mode
-![Dark Mode](screenshots/dark-mode.png)
