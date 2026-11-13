@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f7fb" />
+    <title>TaskFlow — Your productivity space</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="#" aria-label="TaskFlow home">
+          <span class="brand-mark"><i></i><i></i><i></i></span>
+          <span>taskflow</span>
+        </a>
+
+        <button class="workspace-switch">
+          <span class="workspace-avatar">S</span>
+          <span class="workspace-copy"
+            ><strong>Personal workspace</strong><small>Free plan</small></span
+          >
+          <span class="chevron">⌄</span>
+        </button>
+
+        <p class="nav-label">WORKSPACE</p>
+        <nav class="main-nav" aria-label="Main navigation">
+          <button class="nav-link active" data-view="all">
+            <span class="nav-icon">▦</span> Overview
+          </button>
+          <button class="nav-link" data-view="today">
+            <span class="nav-icon">◷</span> My day
+          </button>
+          <button class="nav-link" data-view="upcoming">
+            <span class="nav-icon">▣</span> Upcoming
+          </button>
+          <button class="nav-link" data-view="completed">
+            <span class="nav-icon">✓</span> Completed
+          </button>
+        </nav>
+
+        <div class="sidebar-divider"></div>
+        <div class="section-heading">
+          <p class="nav-label">MY LISTS</p>
+          <button
+            class="icon-button small"
+            id="addCategoryBtn"
+            title="Add category"
+          >
+            ＋
+          </button>
+        </div>
+        <nav class="category-nav" id="categoryNav">
+          <button class="nav-link" data-category="Work">
+            <span class="category-dot purple"></span> Work
+          </button>
+          <button class="nav-link" data-category="Personal">
+            <span class="category-dot orange"></span> Personal
+          </button>
+          <button class="nav-link" data-category="Study">
+            <span class="category-dot blue"></span> Study
+          </button>
+          <button class="nav-link" data-category="Others">
+            <span class="category-dot green"></span> Others
+          </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <div class="tip-card">
+            <div class="tip-spark">✦</div>
+            <strong>Small steps add up.</strong>
+            <p>Focus on progress, not perfection. One task at a time.</p>
+          </div>
+          <button class="nav-link theme-toggle" id="themeToggle">
+            <span class="nav-icon" id="themeIcon">☾</span>
+            <span id="themeText">Dark mode</span>
+          </button>
+          <div class="profile-row">
+            <div class="profile-avatar">SF</div>
+            <div class="profile-copy">
+              <strong>Your workspace</strong><small>Personal account</small>
+            </div>
+            <span class="more-dots">•••</span>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <button
+            class="icon-button menu-button"
+            id="menuButton"
+            aria-label="Toggle menu"
+          >
+            ☰
+          </button>
+          <div class="breadcrumb">
+            Workspace <span>/</span>
+            <strong id="breadcrumbView">Overview</strong>
+          </div>
+          <div class="topbar-actions">
+            <label class="search-box"
+              ><span>⌕</span
+              ><input
+                type="search"
+                id="searchInput"
+                placeholder="Search tasks..."
+                aria-label="Search tasks"
+              /><kbd>⌘ K</kbd></label
+            >
+            <button
+              class="icon-button notification-button"
+              title="Notifications"
+              aria-label="Notifications"
+            >
+              ♧<span></span>
+            </button>
+            <div class="top-avatar">SF</div>
+          </div>
+        </header>
+
+        <div class="content-wrap">
+          <section class="welcome-row">
+            <div>
+              <p class="eyebrow" id="currentDate">YOUR PRODUCTIVITY SPACE</p>
+              <h1 id="pageTitle">Good morning, Suhani <span>✦</span></h1>
+              <p class="subheading" id="pageSubtitle">
+                Here's what's happening with your tasks today.
+              </p>
+            </div>
+            <button class="primary-button" id="openTaskModal">
+              <span>＋</span> Add new task
+            </button>
+          </section>
+
+          <section class="stats-grid" aria-label="Task statistics">
+            <article class="stat-card">
+              <div class="stat-top">
+                <span>Total tasks</span
+                ><span class="stat-icon lavender">▤</span>
+              </div>
+              <div class="stat-number" id="totalCount">0</div>
+              <div class="stat-foot">All your tasks in one place</div>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top">
+                <span>Completed</span><span class="stat-icon mint">✓</span>
+              </div>
+              <div class="stat-number" id="completedCount">0</div>
+              <div class="stat-foot">
+                <span class="positive" id="completionRate">0%</span> completion
+                rate
+              </div>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top">
+                <span>In progress</span><span class="stat-icon peach">◷</span>
+              </div>
+              <div class="stat-number" id="pendingCount">0</div>
+              <div class="stat-foot">Tasks still on your list</div>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top">
+                <span>Overdue</span><span class="stat-icon rose">!</span>
+              </div>
+              <div class="stat-number" id="overdueCount">0</div>
+              <div class="stat-foot">Tasks past their due date</div>
+            </article>
+          </section>
+
+          <section class="progress-panel">
+            <div class="progress-copy">
+              <div>
+                <strong>Your weekly progress</strong>
+                <p>Keep showing up. You're doing great!</p>
+              </div>
+              <strong id="progressLabel">0% <span>done</span></strong>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+          </section>
+
+          <section class="task-section">
+            <div class="task-heading">
+              <div>
+                <h2 id="taskSectionTitle">Your tasks</h2>
+                <p id="taskSectionDescription">
+                  Manage and keep track of everything you need to do.
+                </p>
+              </div>
+              <div class="task-controls">
+                <select id="sortSelect" aria-label="Sort tasks">
+                  <option value="date">Sort: Due date</option>
+                  <option value="priority">Sort: Priority</option>
+                  <option value="created">Sort: Recently added</option>
+                  <option value="alphabetical">Sort: A to Z</option>
+                </select>
+                <div class="view-switch" aria-label="Task view">
+                  <button
+                    class="view-button active"
+                    data-layout="list"
+                    title="List view"
+                  >
+                    ☷
+                  </button>
+                  <button
+                    class="view-button"
+                    data-layout="grid"
+                    title="Grid view"
+                  >
+                    ▦
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="filter-row" id="filterRow">
+              <button class="filter-chip active" data-filter="all">
+                All tasks <span id="allTabCount">0</span>
+              </button>
+              <button class="filter-chip" data-filter="pending">
+                To do <span id="todoTabCount">0</span>
+              </button>
+              <button class="filter-chip" data-filter="completed">
+                Completed <span id="doneTabCount">0</span>
+              </button>
+            </div>
+            <div class="task-list" id="taskList"></div>
+            <div class="empty-state hidden" id="emptyState">
+              <div class="empty-illustration">✦</div>
+              <h3>No tasks found</h3>
+              <p>Try changing your filters or add a new task to get started.</p>
+              <button class="primary-button" id="emptyAddButton">
+                ＋ Create a task
+              </button>
+            </div>
+          </section>
+          <footer class="footer-note">
+            Made for focused days <span>✦</span>
+          </footer>
+        </div>
+      </main>
+    </div>
+
+    <div class="modal-backdrop hidden" id="taskModal">
+      <section
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle"
+      >
+        <div class="modal-header">
+          <div>
+            <p class="eyebrow">MAKE IT HAPPEN</p>
+            <h2 id="modalTitle">Create a new task</h2>
+          </div>
+          <button class="icon-button" id="closeModal" aria-label="Close">
+            ×
+          </button>
+        </div>
+        <form id="taskForm">
+          <input type="hidden" id="taskId" />
+          <label class="form-label" for="taskTitle"
+            >Task title <span>*</span></label
+          >
+          <input
+            class="form-control"
+            id="taskTitle"
+            maxlength="90"
+            placeholder="e.g. Prepare for Java interview"
+            required
+          />
+          <label class="form-label" for="taskDescription"
+            >Description <small>Optional</small></label
+          >
+          <textarea
+            class="form-control"
+            id="taskDescription"
+            rows="3"
+            maxlength="300"
+            placeholder="Add a little more detail..."
+          ></textarea>
+          <div class="form-row">
+            <div>
+              <label class="form-label" for="taskCategory">Category</label
+              ><select class="form-control" id="taskCategory">
+                <option>Work</option>
+                <option>Personal</option>
+                <option>Study</option>
+                <option>Others</option>
+              </select>
+            </div>
+            <div>
+              <label class="form-label" for="taskPriority">Priority</label
+              ><select class="form-control" id="taskPriority">
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+                <option value="low">Low</option>
+              </select>
+            </div>
+          </div>
+          <label class="form-label" for="taskDueDate">Due date</label>
+          <input class="form-control" type="date" id="taskDueDate" />
+          <div class="modal-actions">
+            <button type="button" class="secondary-button" id="cancelModal">
+              Cancel</button
+            ><button class="primary-button" type="submit" id="saveTaskButton">
+              Create task <span>→</span>
+            </button>
+          </div>
+        </form>
+      </section>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
