@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Secure Voting System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Secure Voting System</h1>
+
+    <div class="login" id="loginSection">
+      <h2>Voter Login</h2>
+      <input type="text" id="username" placeholder="Enter Voter Name" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button onclick="login()">Login</button>
+      <p id="loginError" class="error"></p>
+    </div>
+
+    <div class="vote-section hidden" id="votingSection">
+      <h2>Welcome, <span id="voterName"></span>!</h2>
+      <h3>Choose your Candidate:</h3>
+      <div id="candidateList"></div>
+      <p id="voteMsg" class="success"></p>
+      <button onclick="showResults()" class="admin-btn">View Results (Admin)</button>
+    </div>
+
+    <div class="results hidden" id="resultsSection">
+      <h2>Live Vote Results</h2>
+      <div id="resultTable"></div>
+      <button onclick="goBack()">Back</button>
+    </div>
+  </div>
+
+  <script src="script2.js"></script>
+</body>
+</html>
